@@ -1,0 +1,15 @@
+version: '2'
+services:
+
+  # app:
+  #   image: busybox
+  #   volumes:
+  #     - ./app:/var/app
+
+
+  nginx:
+    build: nginx
+    ports:
+      - 80:80
+    environment:
+      - PATH=/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$PATH
