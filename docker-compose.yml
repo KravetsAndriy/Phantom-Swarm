@@ -1,14 +1,10 @@
 version: '2'
 services:
 
-  # app:
-  #   image: busybox
-  #   volumes:
-  #     - ./app:/var/app
-
-
   nginx:
     build: nginx
+    volumes:
+      - ./app:/var/app
     ports:
       - 80:80
     environment:
