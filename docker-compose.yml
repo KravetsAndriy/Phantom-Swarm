@@ -1,11 +1,23 @@
 version: '2'
 services:
 
-  nginx:
-    build: nginx
+  app:
+    image: busybox
     volumes:
       - ./app:/var/app
+
+  nginx:
+    build: nginx
+    volumes_from:
+      - app
     ports:
       - 80:80
     environment:
       - PATH=/usr/local/openresty/bin:/usr/local/openresty/nginx/sbin:$PATH
+    links:
+      - "php-5.6:backend-upstream"
+
+  php-5.6:
+    build: php-5.6
+    volumes_from:
+      - app
